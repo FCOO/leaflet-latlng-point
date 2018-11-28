@@ -3,36 +3,55 @@
 <head>
 	<title>fcoo.dk - leaflet-latlng-point - Demo</title>
 	<meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta http-equiv='x-dns-prefetch-control' content='on'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv='x-dns-prefetch-control' content='on'>
 
 	<meta name='copyright' content='FCOO'>
 	<meta name='owner' content='FCOO'>
 
-  <link  href="bower_components.css" rel="stylesheet">	
-  <link  href="../src/leaflet-latlng-point.css" rel="stylesheet">	
+    <link  href="bower_components.css" rel="stylesheet">
 </head>
 
 <body>
 	<div id="map" style="width: 800px; height: 600px"></div>
 
-
-	
-	
 	<script src="bower_components.js"></script>
 	<script src="../src/leaflet-latlng-point.js"></script>
 	<script>
-		$(function() {
-			var map = L.map('map').setView([56.2, 11.5], 6);
-			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 18,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
-      }).addTo(map);
+        var map = L.map('map').setView([56.2, 11.5], 6);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		    maxZoom: 18,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors</a>'
+        }).addTo(map);
 
-			var myLeafletLatlngPoint = new L.LeafletLatlngPoint( /*options*/ );
-			myLeafletLatlngPoint.addTo(map);
-    });
+        var latLngList = [[54, 10], [54, 14], [55, 12]];
 
-	</script>
+        var myLatlngPointList = new L.LatLngPointList({
+                isPolygon: true,
+                list: latLngList
+            });
+
+        L.polygon(latLngList).addTo(map);
+
+        $.each(latLngList, function(index, latLng){
+            var latLngPointNext = myLatlngPointList.list[index].next;
+            L.marker(latLng)
+                .bindPopup(
+                    'Point #' + index + '<br>' +
+                    '<strong>To next point:</strong><br>' +
+                    'bearing: ' + latLngPointNext.bearing + '<br>' +
+                    'distance: ' + latLngPointNext.distance + '<br>' +
+                    'finalBearing: ' + latLngPointNext.finalBearing + '<br>' +
+                    'finalRhumbBearing: ' + latLngPointNext.finalRhumbBearing + '<br>' +
+                    'rhumbBearing: ' + latLngPointNext.rhumbBearing + '<br>' +
+                    'rhumbDistance: ' + latLngPointNext.rhumbDistance + '<br>' +
+                    'totalDistance: ' + latLngPointNext.totalDistance + '<br>' +
+                    'totalRhumbDistance: ' + latLngPointNext.totalRhumbDistance
+                )
+                .addTo(map);
+        });
+
+
+    </script>
 </body>
 </html>

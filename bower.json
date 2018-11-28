@@ -1,6 +1,6 @@
 {
   "name": "leaflet-latlng-point",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/FCOO/leaflet-latlng-point",
   "authors": [
     "Niels Holt"
@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "jquery": "latest",
-    "leaflet": "latest"
+    "leaflet": "latest",
+    "leaflet-latlng-geodesy": "fcoo/leaflet-latlng-geodesy#^1.0.2"
   },
   "devDependencies": {},
   "license": "MIT",

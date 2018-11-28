@@ -11,8 +11,11 @@ Objects to create and manage a doubly-linked List of points representing a polyl
 ### bower
 `bower install https://github.com/FCOO/leaflet-latlng-point.git --save`
 
+## Demo
+http://FCOO.github.io/leaflet-latlng-point/demo/ 
+
 ## L.LatLngPointList
-	var myLatlngPointList = new L.LatlngPointList(options );
+	var myLatLngPointList = new L.LatLngPointList(options );
 	options = {
 		isPolygon       : false,
         isRhumb         : false,
